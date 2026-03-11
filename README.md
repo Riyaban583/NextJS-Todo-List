@@ -1,41 +1,224 @@
-<<<<<<< HEAD
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
 
-## Getting Started
+# ✅ NextJS Todo List App
 
-First, run the development server:
+**A full-stack Todo List application built with Next.js 14 and MongoDB**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
+
+[Features](#-features) • [Tech Stack](#%EF%B8%8F-tech-stack) • [Getting Started](#-getting-started) • [API Reference](#-api-reference) • [Roadmap](#-roadmap)
+
+</div>
+
+---
+
+## 📸 Preview
+
+> A clean, minimal interface to manage your daily tasks — powered by a real database and built for speed.
+
+---
+
+## ✨ Features
+
+| Feature | Description |
+|---|---|
+| ➕ Add Todo | Quickly add new tasks to your list |
+| 📋 View All Todos | See all your tasks in one organized place |
+| ✅ Complete Todo | Mark tasks as done with a single click |
+| 🗑️ Delete Todo | Remove tasks you no longer need |
+| 🗄️ MongoDB Integration | Persistent storage — your todos survive page refreshes |
+| ⚡ Real-time Updates | Instant UI feedback without full page reloads |
+| 🎨 Clean UI | Minimal, distraction-free interface with Tailwind CSS |
+
+---
+
+## 🛠️ Tech Stack
+
+**Frontend**
+- [Next.js 14](https://nextjs.org/) (App Router)
+- [React](https://react.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [React Toastify](https://fkhadra.github.io/react-toastify/)
+
+**Backend**
+- [Next.js API Routes](https://nextjs.org/docs/app/building-your-application/routing/route-handlers)
+- [MongoDB](https://www.mongodb.com/)
+- [Mongoose](https://mongoosejs.com/)
+- [Axios](https://axios-http.com/)
+
+---
+
+## 📂 Project Structure
+
+```
+todo-next-app/
+│
+├── app/
+│   ├── api/
+│   │   └── route.js          # API route handlers (GET, POST, PUT, DELETE)
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── layout.js             # Root layout
+│   └── page.js               # Home page
+│
+├── Components/
+│   ├── Navbar.jsx            # Top navigation bar
+│   └── Todo.jsx              # Individual todo item component
+│
+├── lib/
+│   ├── config/
+│   │   └── db.js             # MongoDB connection setup
+│   └── models/
+│       └── TodoModel.js      # Mongoose schema & model
+│
+├── public/
+├── .gitignore
+├── jsconfig.json
+├── next.config.mjs
+├── package.json
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🚀 Getting Started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Prerequisites
 
-## Learn More
+Make sure you have the following installed:
+- [Node.js](https://nodejs.org/) (v18 or higher)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- A [MongoDB](https://www.mongodb.com/) instance (local or [Atlas](https://www.mongodb.com/cloud/atlas))
 
-To learn more about Next.js, take a look at the following resources:
+### Installation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**1. Clone the repository**
+```bash
+git clone https://github.com/Riyaban583/NextJS-Todo-List.git
+cd NextJS-Todo-List
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**2. Install dependencies**
+```bash
+npm install
+```
 
-## Deploy on Vercel
+**3. Configure environment variables**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Create a `.env.local` file in the root directory:
+```env
+MONGODB_URI=your_mongodb_connection_string_here
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-=======
-# NextJS-Todo-List
-Frontend is completed.
->>>>>>> cf08ea282207e3e23c9ae9ac42a3a897936ba2ca
+> 💡 Don't have a MongoDB URI? [Create a free cluster on MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register).
+
+**4. Start the development server**
+```bash
+npm run dev
+```
+
+**5. Open in your browser**
+```
+http://localhost:3000
+```
+
+---
+
+## 📡 API Reference
+
+All endpoints are available at `/api`.
+
+### Get All Todos
+```http
+GET /api
+```
+**Response:** `200 OK` — Array of todo objects
+
+---
+
+### Create a Todo
+```http
+POST /api
+```
+**Request Body:**
+```json
+{
+  "title": "Buy groceries",
+  "description": "Milk, eggs, and bread"
+}
+```
+**Response:** `201 Created` — The newly created todo object
+
+---
+
+### Mark Todo as Completed
+```http
+PUT /api
+```
+**Request Body:**
+```json
+{
+  "mongoId": "64abc123..."
+}
+```
+**Response:** `200 OK` — Updated todo object
+
+---
+
+### Delete a Todo
+```http
+DELETE /api?mongoId=64abc123...
+```
+**Response:** `200 OK` — Confirmation message
+
+---
+
+## 🗺️ Roadmap
+
+- [ ] ✏️ Edit existing todos
+- [ ] 🔍 Search and filter todos
+- [ ] 🌙 Dark mode UI
+- [ ] 🔐 User authentication (NextAuth.js)
+- [ ] 📅 Due dates & reminders
+- [ ] 🏷️ Todo categories/tags
+- [ ] 🚀 Deploy to Vercel
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Here's how to get started:
+
+1. Fork the repository
+2. Create a new branch: `git checkout -b feature/your-feature-name`
+3. Make your changes and commit: `git commit -m 'Add some feature'`
+4. Push to your branch: `git push origin feature/your-feature-name`
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 👩‍💻 Author
+
+**Riya Bansal**
+
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Riyaban583)
+
+---
+
+<div align="center">
+
+⭐ **If you found this project helpful, please give it a star on GitHub!** ⭐
+
+Made with ❤️ by [Riya Bansal](https://github.com/Riyaban583)
+
+</div>
